@@ -64,11 +64,16 @@ function getRandomsymbol() {
   const symbols = "!@#$%^&*(){}[]=<>/,.";
   return symbols[Math.floor(Math.random() * symbols.length)];
 }
-//copiare elemento
+//copia elemento
 clipboardEl.addEventListener("click", function () {
-  navigator.clipboard.writeText(resultsEl.textContent);
-  clipboardEl.textContent = "Copy";
-  setTimeout(() => {
+  const password = resultsEl.textContent;
+  if (!password) {
     clipboardEl.innerHTML = `<i class="far fa-clipboard"></i>`;
-  }, 1500);
+  } else {
+    navigator.clipboard.writeText(password);
+    clipboardEl.innerHTML = `Copy`;
+    setTimeout(() => {
+      clipboardEl.innerHTML = `<i class="far fa-clipboard"></i>`;
+    }, 1500);
+  }
 });
