@@ -6,6 +6,7 @@ const numbersEl = document.getElementById("numbers");
 const symbolsEl = document.getElementById("symbols");
 const generateEl = document.getElementById("generate");
 const clipboardEl = document.getElementById("clipboard");
+const copy = document.querySelector(".copy");
 
 const randomFunc = {
   lower: getRandomLower,
@@ -63,5 +64,11 @@ function getRandomsymbol() {
   const symbols = "!@#$%^&*(){}[]=<>/,.";
   return symbols[Math.floor(Math.random() * symbols.length)];
 }
-
-console.log(getRandomsymbol());
+//copiare elemento
+clipboardEl.addEventListener("click", function () {
+  navigator.clipboard.writeText(resultsEl.textContent);
+  clipboardEl.textContent = "Copy";
+  setTimeout(() => {
+    clipboardEl.innerHTML = `<i class="far fa-clipboard"></i>`;
+  }, 1500);
+});
